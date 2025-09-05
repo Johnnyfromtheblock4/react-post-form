@@ -11,7 +11,12 @@ function App() {
 
   const handleChange = (e) => {
     const { value, name, type, checked } = e.target; // recupero le proprietà indicate poiche mi servono per valorizzare le proprietà dell'oggetto formData
-    
+    const newFormData = {
+      ...formData,
+      [name]: type === "checkbox" ? checked : value,
+    };
+
+    setFormData(newFormData);
   };
 
   return (
