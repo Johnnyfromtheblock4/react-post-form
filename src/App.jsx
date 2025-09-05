@@ -11,9 +11,17 @@ function App() {
 
   const handleChange = (e) => {
     const { value, name, type, checked } = e.target; // recupero le proprietà indicate poiche mi servono per valorizzare le proprietà dell'oggetto formData
+
+    // UTILIZZO DELLA CHECKBOX IN PUBLIC
+    // const newFormData = {
+    //   ...formData,
+    //   [name]: type === "checkbox" ? checked : value,
+    // };
+
+    // UTILIZZO DELLA SELECT IN PUBLIC
     const newFormData = {
       ...formData,
-      [name]: type === "checkbox" ? checked : value,
+      [name]: value,
     };
 
     setFormData(newFormData);
@@ -58,7 +66,7 @@ function App() {
                   />
                 </div>
                 {/* Pubblico */}
-                <div className="col-12 col-md-4">
+                {/* <div className="col-12 col-md-4">
                   <label htmlFor="" className="form-label">
                     Pubblico
                   </label>
@@ -71,7 +79,18 @@ function App() {
                       onChange={handleChange}
                     />
                   </div>
-                </div>
+                </div> */}
+                <select
+                  name="public"
+                  id="public"
+                  className="form-select"
+                  onChange={handleChange}
+                  value={formData.public}
+                >
+                  <option value="">Seleziona se pubblico o no</option>
+                  <option value="yes">SI</option>
+                  <option value="no">NO</option>
+                </select>
                 {/* Testo */}
                 <div className="col-12">
                   <label htmlFor="" className="form-label">
