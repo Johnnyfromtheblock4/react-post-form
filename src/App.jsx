@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 function App() {
+  const [alert, setAlert] = useState({ show: false, type: "", message: "" });
   const [formData, setFormData] = useState({
     author: "",
     title: "",
@@ -34,11 +35,22 @@ function App() {
     axios
       .post("https://67c5b4f3351c081993fb1ab6.mockapi.io/api/posts", formData)
       .then((resp) => {
+        setAlert({
+          show: true,
+          type: "success",
+          message: "Post inserito correttamente",
+        });
+        setFormData({ author: "", title: "", public: false, body: "" });
         console.log(resp.data);
       })
-      .catch((err) =>
-        console.log("Errore nell'effettuare la chimata ajax" + err)
-      );
+      .catch((err) => {
+        setAlert({
+          show: true,
+          type: "danger",
+          message: "Errore durante l'inserimento del post",
+        });
+        console.log("Errore nell'effettuare la chimata ajax" + err);
+      });
   };
 
   return (
@@ -49,6 +61,9 @@ function App() {
             <h1>Reac Post Form</h1>
           </div>
           <div className="col-12">
+            {alert.show && (
+              <div className={`alert alert-${alert.type}`}>{alert.message}</div>
+            )}
             <form onSubmit={handleSubmit}>
               <div className="row gy-3">
                 {/* Autore */}
