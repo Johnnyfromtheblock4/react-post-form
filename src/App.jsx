@@ -1,4 +1,14 @@
+import { useState, useEffect } from "react";
+import axios from "axios";
+
 function App() {
+  const [formData, setFormData] = useState({
+    autor: "",
+    title: "",
+    public: false,
+    body: "",
+  });
+
   return (
     <>
       <div className="container my-5">
@@ -16,6 +26,8 @@ function App() {
                   </label>
                   <input
                     type="text"
+                    name="author"
+                    value={formData.author}
                     className="form-control"
                     placeholder="Autore"
                   />
@@ -27,6 +39,8 @@ function App() {
                   </label>
                   <input
                     type="text"
+                    name="title"
+                    value={formData.title}
                     className="form-control"
                     placeholder="Titolo"
                   />
@@ -37,7 +51,11 @@ function App() {
                     Pubblico
                   </label>
                   <div>
-                    <input type="checkbox" className="form-check" />
+                    <input
+                      type="checkbox"
+                      name="public"
+                      className="form-check"
+                    />
                   </div>
                 </div>
                 {/* Testo */}
@@ -46,8 +64,9 @@ function App() {
                     Testo
                   </label>
                   <textarea
-                    name=""
-                    id=""
+                    name="body"
+                    id="body"
+                    value={formData.body}
                     className="form-control"
                     rows="4"
                     placeholder="Testo"
