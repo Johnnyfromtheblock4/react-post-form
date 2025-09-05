@@ -3,11 +3,16 @@ import axios from "axios";
 
 function App() {
   const [formData, setFormData] = useState({
-    autor: "",
+    author: "",
     title: "",
     public: false,
     body: "",
   });
+
+  const handleChange = (e) => {
+    const { value, name, type, checked } = e.target; // recupero le proprietà indicate poiche mi servono per valorizzare le proprietà dell'oggetto formData
+    
+  };
 
   return (
     <>
@@ -30,6 +35,7 @@ function App() {
                     value={formData.author}
                     className="form-control"
                     placeholder="Autore"
+                    onChange={handleChange}
                   />
                 </div>
                 {/* Titolo */}
@@ -43,6 +49,7 @@ function App() {
                     value={formData.title}
                     className="form-control"
                     placeholder="Titolo"
+                    onChange={handleChange}
                   />
                 </div>
                 {/* Pubblico */}
@@ -54,7 +61,9 @@ function App() {
                     <input
                       type="checkbox"
                       name="public"
+                      checked={formData.public}
                       className="form-check"
+                      onChange={handleChange}
                     />
                   </div>
                 </div>
@@ -70,6 +79,7 @@ function App() {
                     className="form-control"
                     rows="4"
                     placeholder="Testo"
+                    onChange={handleChange}
                   ></textarea>
                 </div>
                 {/* Button */}
