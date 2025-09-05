@@ -33,7 +33,10 @@ function App() {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("https://67c5b4f3351c081993fb1ab6.mockapi.io/api/posts", formData)
+      .post(
+        "https://benevolent-horse-8dc5be.netlify.app/netlify/functions/echo",
+        formData
+      )
       .then((resp) => {
         setAlert({
           show: true,
